@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: #707070;
+}
+
 .wrapper {
     margin: 0 auto;
     width: 95%;
@@ -12,10 +16,52 @@
 
 .header {
     display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
     gap: 40px;
-    margin: 40px 0;
+    padding: 40px 0;
 }
 
+.search-box {
+    display: flex;
+    gap: 30px;
+}
+
+#search-input,
+#select-genre {
+    font-size: 18px;
+    padding: 15px 20px;
+    min-width: 320px;
+    max-width: 450px;
+    border: 0;
+    outline: 0;
+    border-radius: 10px;
+}
+
+#select-genre {
+    text-align: center;
+}
+
+#select-genre>option {
+    background-color: #333;
+    color: #ebebeb;
+}
+
+#search-btn {
+    font-size: 18px;
+    padding: 15px 20px;
+    border-radius: 10px;
+    background-color: #333;
+    color: #ebebeb;
+    border: 1px solid #ebebeb;
+    cursor: pointer;
+}
+
+#search-btn:active {
+    background-color: #ebebeb;
+    color: #333;
+}
 
 .wrap-games {
     display: flex;
@@ -23,18 +69,18 @@
     flex-wrap: wrap;
     gap: 20px;
     margin: 0 auto;
-    /* max-width: 95%; */
 }
 
 .game-card {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 300px;
+    width: 320px;
     border: 1px solid #333;
     border-radius: 5px;
     overflow: hidden;
     padding: 10px;
+    background-color: #ebebeb;
 }
 
 .game-card img {
@@ -51,9 +97,43 @@
     justify-content: space-between;
 }
 
-#up,
-#down {
-    padding: 10px 20px;
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 120px;
+    align-items: center;
+    padding: 20px 0;
+    margin-top: 20px;
     font-size: 18px;
-    border-radius: 5px;
+    background-color: #333;
+
+}
+
+#next,
+#back {
+    height: auto;
+    font-size: inherit;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: #333;
+    color: #ebebeb;
+    border: 1px solid #ebebeb;
+    cursor: pointer;
+}
+
+.wrap-pages {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: inherit;
+    gap: 20px;
+    color: #ebebeb;
+    padding: 10px 10px;
+}
+
+.first-page,
+.last-page {
+    padding: 5px;
+    cursor: pointer;
+    text-decoration: underline;
 }

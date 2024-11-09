@@ -1,10 +1,15 @@
 const BASE_URL = "https://api.rawg.io/api/games"
 const API_KEY = "5a468c92804f440d86a397954555b489"
-const btnUp = document.getElementById('up');
-const btnDown = document.getElementById('down');
+const btnNext = document.getElementById('next');
+const btnBack = document.getElementById('back');
 const searchInput = document.getElementById('search-input');
 const btnSearch = document.getElementById('search-btn');
+const firstPage = document.querySelector('.first-page');
+const lastPage = document.querySelector('.last-page');
+const curPage = document.querySelector('.current-page');
 let currentPage = 1;
+// let
+let strSearch = '';
 
 function render(games) {
     const wrapGames = document.querySelector('.wrap-games');
@@ -24,13 +29,13 @@ function render(games) {
 
 }
 
-btnUp.addEventListener('click', () => {
-    console.log('Кнопка Up');
+btnNext.addEventListener('click', () => {
+    console.log('Кнопка Next');
     currentPage++;
     loadGames();
 });
-btnDown.addEventListener('click', () => {
-    console.log('Кнопка Down');
+btnBack.addEventListener('click', () => {
+    console.log('Кнопка Back');
 
     if (currentPage > 1) {
         currentPage--;
@@ -38,32 +43,59 @@ btnDown.addEventListener('click', () => {
     }
 });
 
+async function fetchAllGames() {
+    const response = await fetch(`${BASE_URL}?key=${API_KEY}`);
+    const data = await response.json();
+    return data;
+}
+
 async function fetchGames(page) {
     const response = await fetch(`${BASE_URL}?key=${API_KEY}&page=${page}`);
     const data = await response.json()
-    return data
+    return data;
 }
 
-async function searchGame(search) {
-    const res = await fetch(`${BASE_URL}?key=${API_KEY}&search=${search}`);
+async function searchGame(search, page = 1) {
+    const res = await fetch(`${BASE_URL}?key=${API_KEY}&page=${page}&search=${search}`);
     const data = await res.json();
     return data;
 }
 
 async function loadGames() {
-    let dataPage = await fetchGames(currentPage);
+    let dataPage;
+    if (strSearch) {
+        dataPage = await searchGame(strSearch, currentPage);
+    } else {
+        dataPage = await fetchGames(currentPage);
+    }
+    lastPage.textContent = Math.ceil(dataPage.count / 20);
+    console.log(lastPage);
+    firstPage.textContent = 1;
+    curPage.textContent = currentPage;
     render(dataPage.results);
     console.log(dataPage.results);
     console.log(dataPage);
-
 }
 
 btnSearch.addEventListener('click', async () => {
-    const dataSearch = await searchGame(searchInput.value.trim());
+    strSearch = searchInput.value.trim();
+    const dataSearch = await searchGame(strSearch);
     console.log(searchGame(searchInput.value.trim()));
 
     render(dataSearch.results);
+    console.log(dataSearch);
+
     searchInput.value = '';
-})
+});
+
+lastPage.addEventListener('click', (e) => {
+    currentPage = Number(e.target.textContent);
+    loadGames();
+});
+
+firstPage.addEventListener('click', () => {
+    currentPage = 1;
+    loadGames();
+});
 
 loadGames();
