@@ -9,16 +9,24 @@
 </head>
 
 <body>
-    <div class="search-box">
-        <input type="text" id="search-input">
-        <button id="search-btn">SEARCH</button>
-    </div>
-    <div class="wrap-games">
-
-    </div>
-    <div class="pagination">
-        <button id="down">DOWN</button>
-        <button id="up">UP</button>
+    <div class="wrapper">
+        <div class="header">
+            <div class="search-box">
+                <input type="text" id="search-input">
+                <button id="search-btn">SEARCH</button>
+            </div>
+            <div class="genres-games">
+                <select name="select-genre" id="select-genre">
+                    <option value="genre1">genre1</option>
+                </select>
+            </div>
+        </div>
+        <div class="wrap-games">
+        </div>
+        <div class="pagination">
+            <button id="down">DOWN</button>
+            <button id="up">UP</button>
+        </div>
     </div>
 
     <script src="./script.js"></script>

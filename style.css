@@ -4,13 +4,26 @@
     box-sizing: border-box;
 }
 
+.wrapper {
+    margin: 0 auto;
+    width: 95%;
+    padding: 0 30px;
+}
+
+.header {
+    display: flex;
+    gap: 40px;
+    margin: 40px 0;
+}
+
+
 .wrap-games {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
     margin: 0 auto;
-    max-width: 95%;
+    /* max-width: 95%; */
 }
 
 .game-card {

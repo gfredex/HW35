@@ -4,6 +4,7 @@ const btnUp = document.getElementById('up');
 const btnDown = document.getElementById('down');
 const searchInput = document.getElementById('search-input');
 const btnSearch = document.getElementById('search-btn');
+let currentPage = 1;
 
 function render(games) {
     const wrapGames = document.querySelector('.wrap-games');
@@ -22,8 +23,6 @@ function render(games) {
     });
 
 }
-
-let currentPage = 1;
 
 btnUp.addEventListener('click', () => {
     console.log('Кнопка Up');
