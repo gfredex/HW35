@@ -135,3 +135,32 @@ body {
     cursor: pointer;
     text-decoration: underline;
 }
+
+@media (max-width: 790px) {
+    .search-box {
+        width: auto;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .pagination {
+        gap: 40px;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 620px) {
+    .pagination>.wrap-pages {
+        order: 1;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .pagination>#back {
+        order: 2;
+    }
+
+    .pagination>#next {
+        order: 3;
+    }
+}
